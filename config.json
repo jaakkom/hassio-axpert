@@ -1,13 +1,11 @@
 {
     "name": "Axpert Inverter",
     "version": "0.5.1",
-    "init": false,
     "slug": "axpert",
     "description": "Monitors an axpert inverter",
     "arch": ["aarch64", "amd64", "armv7"],
     "startup": "application",
     "boot": "auto",
-    "init": false,
     "privileged": ["SYS_RAWIO"],
     "devices": ["/dev/hidraw0", "/dev/ttyACM0", "/dev/ttyACM1", "/dev/ttyUSB0", "/dev/ttyUSB1"],
     "options": {
@@ -17,7 +15,9 @@
         "mqtt_client_id": "axpert",
         "mqtt_topic_parallel": "power/axpert",
         "mqtt_topic_settings": "power/axpert_settings",
-        "mqtt_topic": "power/axpert{sn}",
+        "mqtt_topic": "power/axpert/{sn}",
+        "mqtt_discovery_prefix": "homeassistant",
+        "mqtt_device_name": "Axpert Inverter",
         "device": "/dev/hidraw0"
     },
     "schema": {
@@ -28,6 +28,8 @@
         "mqtt_topic_parallel": "str",
         "mqtt_topic_settings": "str",
         "mqtt_topic": "str",
+        "mqtt_discovery_prefix": "str",
+        "mqtt_device_name": "str",
         "device": "str"
     }
 }
